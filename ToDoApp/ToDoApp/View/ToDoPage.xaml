@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bd="clr-namespace:ToDoApp.ViewModel"
+             x:Class="ToDoApp.View.ToDoPage">
+    <ContentPage.BindingContext>
+        <bd:ToDoViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Partie d'ajout de donnée -->
+            <StackLayout Orientation="Horizontal" Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="0" HeightRequest="60"  HorizontalOptions="FillAndExpand">
+                         <Entry Placeholder="Add your new todo" MinimumWidthRequest="180" WidthRequest="180"
+                                HorizontalTextAlignment="Center" Text="{Binding NewToDoInput}"  />
+                        <StackLayout>
+                            <Label Text="{Binding InputValidation}"
+                                    LineHeight="2" LineBreakMode="TailTruncation"
+                                    x:Name="InputValidationLabel"
+                                    
+                                    Opacity="1" TextColor="{Binding InputValidationColor}"  HorizontalTextAlignment="Center" >
+                                
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button Text="Add" Grid.Column="1" BackgroundColor="#4ba3c3" CornerRadius="60" Command="{Binding AddCommand}"
+                            MinimumHeightRequest="70"  MinimumWidthRequest="70"
+                            WidthRequest="70" HeightRequest="70" Margin="15,0" />
+                </Grid>
+            </StackLayout>
+            <ListView ItemsSource="{Binding ToDos}" x:Name="MyToDoList"
+                      ItemSelected="MyToDoList_ItemSelected_1" SeparatorColor="Black"
+                       
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+
+                                <CheckBox Color="#6290cb" IsChecked="{Binding Completed}"  Margin="10,0"
+                                              CheckedChanged="CompleteEvent" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Description}" HorizontalOptions="CenterAndExpand" WidthRequest="500" 
+                                       HorizontalTextAlignment="Center" LineHeight="1.4" MaxLines="2" LineBreakMode="TailTruncation" 
+                                       VerticalOptions="CenterAndExpand" FontSize="14" TextColor="Black" Margin="50,0" />
+                                
+                                <ImageButton BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"
+                                             Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference MyToDoList}}"
+                                             CommandParameter="{Binding .}"
+                                             Source="delete.png" WidthRequest="30" Margin="20,0" />
+                                
+                            </StackLayout> 
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

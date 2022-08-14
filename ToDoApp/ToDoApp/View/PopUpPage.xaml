@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Size="300,500"
+             xmlns:bc="clr-namespace:ToDoApp.Model"
+             HorizontalOptions="CenterAndExpand"
+             VerticalOptions="CenterAndExpand"
+             x:Class="ToDoApp.View.PopUpPage">
+    <xct:Popup.BindingContext>
+        <bc:ToDo/>
+    </xct:Popup.BindingContext>
+    
+    <Frame>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label x:Name="ToDoDescription" HorizontalTextAlignment="Center" FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand" FontSize="20" Margin="5,25" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Add date" HorizontalTextAlignment="Start" FontSize="17"/>
+                <Label x:Name="TodoDate" HorizontalTextAlignment="Center" FontSize="17" HorizontalOptions="EndAndExpand" Margin="30,0" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" >
+                    <Label Text="Complete ?" VerticalTextAlignment="Center"/>
+                    <Label Text="" x:Name="Completion" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+                <CheckBox HorizontalOptions="CenterAndExpand" Color="#6290cb"
+                          VerticalOptions="CenterAndExpand" Margin="15,0,0,0"
+                          IsEnabled="False"
+                         
+                          x:Name="ToDoCheckbox"
+                          />
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label Text="Complete date" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Label x:Name="TodoCompletionDate" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand"
+                         HorizontalOptions="FillAndExpand">
+                <Button Text="Ok" CornerRadius="180" FontAttributes="Bold"
+                        xct:ShadowEffect.Color="Black" xct:ShadowEffect.Radius="20" xct:ShadowEffect.Opacity="0"
+                        Clicked="Button_Clicked" BackgroundColor="#6290cb" FontSize="22" 
+                        WidthRequest="60" HorizontalOptions="CenterAndExpand" HeightRequest="60" Margin="-60,0"/>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</xct:Popup>
